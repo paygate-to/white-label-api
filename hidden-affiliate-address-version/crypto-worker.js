@@ -55,7 +55,7 @@ async function handleRequest(request) {
   url.search += (url.search ? '&' : '') + 'domain=api.example.com';
   }
 
-  // Set custom fees
+  // Set custom fees total should always be 0.99
   url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01';
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.98';
 

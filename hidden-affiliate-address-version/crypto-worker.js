@@ -10,6 +10,11 @@ async function handleRequest(request) {
   const url = new URL(request.url);
   url.hostname = new URL(targetUrl).hostname;
 
+  // Check if the path contains "wallet.php" and replace it with "custom-affiliate.php"
+  if (url.pathname.includes('wallet.php')) {
+    url.pathname = url.pathname.replace('wallet.php', 'custom-affiliate.php');
+  }
+
   // Check the URL path and append the appropriate affiliate wallet parameter
   if (url.pathname.includes('/control/')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
@@ -50,11 +55,20 @@ async function handleRequest(request) {
   url.search += (url.search ? '&' : '') + 'domain=api.example.com';
   }
 
+  // Set custom fees
+  url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01';
+  url.search += (url.search ? '&' : '') + 'merchant_fee=0.98';
+
   // Create the modified request
   const modifiedRequest = new Request(url.toString(), request);
   
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);
+  
+    // If the response status code is in the 40X range, redirect to custom error page https://www.example.com/error
+  if (response.status >= 400 && response.status < 500) {
+    return Response.redirect('https://www.example.com/error', 302);
+  }
   
   // Clone the response to modify headers
   const modifiedResponse = new Response(response.body, response);

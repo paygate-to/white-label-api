@@ -60,7 +60,18 @@ async function handleRequest(request) {
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.98';
 
   // Create the modified request
-  const modifiedRequest = new Request(url.toString(), request);
+  let body = null;
+
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    // clone body safely so it is not consumed
+    body = await request.clone().arrayBuffer();
+  }
+
+  const modifiedRequest = new Request(url.toString(), {
+    method: request.method,
+    headers: request.headers,
+    body: body
+  });
   
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);

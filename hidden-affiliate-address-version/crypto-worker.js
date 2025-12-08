@@ -12,7 +12,7 @@ async function handleRequest(request) {
 
   // Check if the path contains "wallet.php" and replace it with "custom-affiliate.php"
   if (url.pathname.includes('wallet.php')) {
-    url.pathname = url.pathname.replace('wallet.php', 'custom-affiliate.php');
+    url.pathname = url.pathname.replace('/wallet.php', '/custom-affiliate.php');
   }
 
   // Check the URL path and append the appropriate affiliate wallet parameter

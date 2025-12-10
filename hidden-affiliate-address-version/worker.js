@@ -3,7 +3,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  // Define the target URL to cloak
+  // Define the target URL to cloak (Don't change this value)
   const targetUrl = 'https://api.paygate.to';
   
   // Modify the request URL to replace the worker's domain with the target domain

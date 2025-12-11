@@ -3,7 +3,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  // Define the target URL to cloak
+  // Define the target URL to cloak (Don't change this)
   const targetUrl = 'https://api.paygate.to';
   
   // Modify the request URL to replace the worker's domain with the target domain
@@ -18,7 +18,7 @@ async function handleRequest(request) {
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);
 
-  // Check if the response status code is in the 40X range and redirect to custom page if it is
+  // Check if the response status code is in the 40X range and redirect to custom error page
   if (response.status >= 400 && response.status < 500) {
     return Response.redirect('https://www.example.com', 302);
   }

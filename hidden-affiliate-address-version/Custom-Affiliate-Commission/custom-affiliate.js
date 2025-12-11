@@ -3,7 +3,7 @@ addEventListener('fetch', event => {
 })
 
 async function handleRequest(request) {
-  // Define the target URL to cloak
+  // Define the target URL to cloak (This URL should remain intact and you should never replace it)
   const targetUrl = 'https://api.paygate.to';
   
   // Modify the request URL to replace the worker's domain with the target domain
@@ -12,13 +12,13 @@ async function handleRequest(request) {
 
   // Check if the path contains "wallet.php" and replace it with "custom-affiliate.php"
   if (url.pathname.includes('wallet.php')) {
-    url.pathname = url.pathname.replace('wallet.php', 'custom-affiliate.php');
+    url.pathname = url.pathname.replace('/wallet.php', '/custom-affiliate.php');
   }
 
   // Add the affiliate parameter to the URL while preserving the existing search params
   url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9&domain=checkout.example.com';
   
-  // Set custom fees
+  // Set custom fees total should always be 0.99
   url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01';
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.98';
   

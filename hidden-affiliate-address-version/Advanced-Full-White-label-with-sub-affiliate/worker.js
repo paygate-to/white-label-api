@@ -56,7 +56,7 @@ async function handleRequest(request) {
   }
   
   // Optional set commission for the sub-affiliate credit card system. Here you set the commission for sub-affiliate who will market your credit card white-label
-  // Your sub-affiliate can have workers pointing to your own white-labeled API custom domain
+  // Your sub-affiliate can have workers pointing to your own white-labeled API custom domain while setting their own custom commission
   // Example https://api.yourdomain.com/set-affiliate.php?address=0xF977814e90dA44bFA03b6295A0616a897441aceC&callback=https%3A%2F%2Fwww.example.com%2Forder%3Fnumber%3D82173314628191&merchant_fee=0.97&sub_affiliate_fee=0.01&sub_affiliate=0x082489A616aB4D46d1947eE3F912e080815b08DA
   
   if (url.pathname.includes('/set-affiliate.php')) {

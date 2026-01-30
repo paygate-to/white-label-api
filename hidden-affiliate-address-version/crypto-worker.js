@@ -56,8 +56,10 @@ async function handleRequest(request) {
   }
 
   // Set custom fees total should always be 0.99 (The commission set here should work for both credit cards and crypto systems)
+  if (!url.pathname.includes('process-payment.php')) {
   url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01';
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.98';
+  }
 
   // Create the modified request
   const modifiedRequest = new Request(url.toString(), request);

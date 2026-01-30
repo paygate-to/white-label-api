@@ -15,14 +15,14 @@ async function handleRequest(request) {
   if (url.pathname.includes('/control/wallet.php')) {
     url.pathname = url.pathname.replace('/control/wallet.php', '/set-affiliate.php');
   }
-
+if (!url.pathname.includes('process-payment.php')) {
   // Add the affiliate parameter to the URL while preserving the existing search params
   url.search += (url.search ? '&' : '') + 'sub_affiliate=0x3B98AFD0Bb4b4291eD825d1A8d5E62b14800cf9e&domain=checkout.sub-affiliate-website.com';
   
   // Set custom fees. The total here would depend on the &affiliate_fee= parameter set in your advanced white label worker so the final total should always be 0.99
   url.search += (url.search ? '&' : '') + 'sub_affiliate_fee=0.01'; // Example where your sub-affiliate set their commission to 1%
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.97'; // Here we used example where your original worker has &affiliate_fee=0.01 (1%) so you instruct your sub-affiliate in your API docs for a total of 0.98 and the final total would be 0.99
-  
+}
   // Create a modified request with the updated URL
   const modifiedRequest = new Request(url.toString(), request);
 

@@ -50,9 +50,11 @@ async function handleRequest(request) {
     url.search += (url.search ? '&' : '') + 'affiliate=CnkEQKAQ7s7ZtnRcoxahMaxv29rkQkTSLhA5cGosHDWp';
   }
   
-  // Custom hosted multi-coin domain name
+  // Custom hosted payment pages domain name
   if (url.pathname.includes('/crypto/hosted.php')) {
   url.search += (url.search ? '&' : '') + 'domain=api.example.com';
+  } else if (url.pathname.includes('/pay.php')) {
+  url.search += (url.search ? '&' : '') + 'domain=checkout.example.com';
   }
   
   // Optional set commission for the sub-affiliate credit card system. Here you set the commission for sub-affiliate who will market your credit card white-label
@@ -64,9 +66,11 @@ async function handleRequest(request) {
   url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01'; //Total custom fees should always be 0.99 so if you set yours 1% (0.01) per the example then you instruct your sub-affiliate for 0.98 total in your API docs.
   url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9'; // The affiliate wallet where you will receive earnings and your sub-affiliate can't change.
   } else {
+	  if (!url.pathname.includes('process-payment.php')) {
   // Set custom fees total should always be 0.99 (The commission set here should work for both credit cards and crypto systems for your direct merchants)
   url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01';
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.98';
+	  }
   }	  
 
   // Create the modified request

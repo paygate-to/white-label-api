@@ -19,7 +19,15 @@ if (!url.pathname.includes('process-payment.php')) {
   url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9&domain=checkout.example.com';
 }
   // Create a modified request with the updated URL
-  const modifiedRequest = new Request(url.toString(), request);
+  const modifiedRequest = new Request(url.toString(), {
+  method: request.method,
+  headers: {
+    ...Object.fromEntries(request.headers),
+    'PGTO-IPCountry': request.cf?.country || 'XX'
+  },
+  body: request.body
+});
+
 
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);

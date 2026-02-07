@@ -24,7 +24,15 @@ if (!url.pathname.includes('process-payment.php')) {
   url.search += (url.search ? '&' : '') + 'merchant_fee=0.97'; // Here we used example where your original worker has &affiliate_fee=0.01 (1%) so you instruct your sub-affiliate in your API docs for a total of 0.98 and the final total would be 0.99
 }
   // Create a modified request with the updated URL
-  const modifiedRequest = new Request(url.toString(), request);
+  const modifiedRequest = new Request(url.toString(), {
+  method: request.method,
+  headers: {
+    ...Object.fromEntries(request.headers),
+    'PGTO-IPCountry': request.cf?.country || 'XX'
+  },
+  body: request.body
+});
+
 
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);

@@ -13,7 +13,15 @@ async function handleRequest(request) {
     // Add the domain parameter to the URL while preserving the existing search params
   url.search += (url.search ? '&' : '') + 'domain=checkout.example.com';
   
-  const modifiedRequest = new Request(url.toString(), request);
+  const modifiedRequest = new Request(url.toString(), {
+  method: request.method,
+  headers: {
+    ...Object.fromEntries(request.headers),
+    'PGTO-IPCountry': request.cf?.country || 'XX'
+  },
+  body: request.body
+});
+
   
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);

@@ -19,12 +19,17 @@ async function handleRequest(request) {
     ...Object.fromEntries(request.headers),
     'PGTO-IPCountry': request.cf?.country || 'XX'
   },
-  body: request.body
+  body: request.body ? request.clone().body : null,
+  redirect: 'manual'
 });
 
   
   // Make a request to the target URL
   const response = await fetch(modifiedRequest);
+  
+  if (response.status >= 300 && response.status < 400) {
+    return response;
+  }
 
   // Check if the response status code is in the 40X range and redirect to custom error page
   if (response.status >= 400 && response.status < 500) {

@@ -44,6 +44,8 @@ async function handleRequest(request) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/base')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
+  } else if (url.pathname.includes('/crypto/monad')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/trc20')) {
     url.search += (url.search ? '&' : '') + 'affiliate=TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX';
   } else if (url.pathname.includes('/crypto/sol')) {
@@ -51,10 +53,12 @@ async function handleRequest(request) {
   }
   
   // Custom hosted payment pages domain name
+  if (!url.searchParams.has('domain')) {
   if (url.pathname.includes('/crypto/hosted.php')) {
   url.search += (url.search ? '&' : '') + 'domain=api.example.com';
   } else if (url.pathname.includes('/pay.php')) {
   url.search += (url.search ? '&' : '') + 'domain=checkout.example.com';
+  }
   }
   
   // Optional set commission for the sub-affiliate credit card system. Here you set the commission for sub-affiliate who will market your credit card white-label
@@ -74,12 +78,20 @@ async function handleRequest(request) {
   }	  
 
   // Create the modified request
-  const modifiedRequest = new Request(url.toString(), {
+const headers = new Headers(request.headers);
+
+// Add geo header ONLY if it does not already exist
+if (!headers.has('PGTO-IPCountry')) {
+  headers.set(
+    'PGTO-IPCountry',
+    request.cf?.country || 'XX'
+  );
+}
+
+// Create the modified request
+const modifiedRequest = new Request(url.toString(), {
   method: request.method,
-  headers: {
-    ...Object.fromEntries(request.headers),
-    'PGTO-IPCountry': request.cf?.country || 'XX'
-  },
+  headers,
   body: request.body ? request.clone().body : null,
   redirect: 'manual'
 });
@@ -93,9 +105,18 @@ async function handleRequest(request) {
   }
   
     // If the response status code is in the 40X range, redirect to custom error page https://www.example.com/error
-  if (response.status >= 400 && response.status < 500) {
-    return Response.redirect('https://www.example.com/error', 302);
-  }
+ if (response.status >= 400 && response.status < 500) {
+
+  // Fetch error page internally
+  const errorPage = await fetch('https://www.example.com/error');
+  
+  return new Response(errorPage.body, {
+    status: 400,
+    headers: {
+      'Content-Type': 'text/html'
+    }
+  });
+}
   
   // Clone the response to modify headers
   const modifiedResponse = new Response(response.body, response);

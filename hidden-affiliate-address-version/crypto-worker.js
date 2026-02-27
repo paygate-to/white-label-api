@@ -44,6 +44,8 @@ async function handleRequest(request) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/base')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
+  } else if (url.pathname.includes('/crypto/monad')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/trc20')) {
     url.search += (url.search ? '&' : '') + 'affiliate=TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX';
   } else if (url.pathname.includes('/crypto/sol')) {

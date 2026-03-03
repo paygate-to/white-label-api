@@ -18,6 +18,8 @@ async function handleRequest(request) {
   // Check the URL path and append the appropriate affiliate wallet parameter (Make sure to replace each wallet below with your own wallet matching the correct blockchain network to receive affiliate commission.)
   if (url.pathname.includes('/control/')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
+  } else if (url.pathname.includes('/crypto/cards')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/btc')) {
     url.search += (url.search ? '&' : '') + 'affiliate=bc1qx9t2l3pyny2spqpqlye8svce70nppwtaxwdrp4';
   } else if (url.pathname.includes('/crypto/bch')) {

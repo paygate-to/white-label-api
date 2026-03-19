@@ -40,7 +40,9 @@ async function handleRequest(request) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/avax-c')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
-  } else if (url.pathname.includes('/crypto/optimism')) {
+  } else if (url.pathname.includes('/crypto/linea')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
+  }	else if (url.pathname.includes('/crypto/optimism')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/base')) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';

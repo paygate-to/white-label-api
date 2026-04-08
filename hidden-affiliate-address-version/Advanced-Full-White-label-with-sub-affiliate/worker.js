@@ -73,6 +73,15 @@ async function handleRequest(request) {
   url.pathname = url.pathname.replace('/set-affiliate.php', '/control/custom-sub-affiliate.php');  
   url.search += (url.search ? '&' : '') + 'affiliate_fee=0.01'; //Total custom fees should always be 0.99 so if you set yours 1% (0.01) per the example then you instruct your sub-affiliate for 0.98 total in your API docs.
   url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9'; // The affiliate wallet where you will receive earnings and your sub-affiliate can't change.
+  } else if (url.pathname.includes('/vcc-set-affiliate.php')) {
+	  
+// Optional set commission for the sub-affiliate virtual credit card system. Here you set the commission for sub-affiliate who will market your VCC white-label
+// Your sub-affiliate can have workers pointing to your own white-labeled API custom domain while setting their own custom commission
+// Example https://api.yourdomain.com/vcc-set-affiliate.php?provider=mastercard&amount=5&sub_affiliate_fee=0.03&sub_affiliate=0x082489A616aB4D46d1947eE3F912e080815b08DA
+  
+  url.pathname = url.pathname.replace('/vcc-set-affiliate.php', '/crypto/cards/custom-sub-affiliate.php');  
+  url.search += (url.search ? '&' : '') + 'affiliate_fee=0.07'; //Your own percentage commission to impose on VCC cards orders so 0.07 for example means 7% earning of any virtual card value ordered.
+  url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9'; // The affiliate wallet where you will receive earnings and your sub-affiliate can't change.  
   } else {
 	  if (!url.pathname.includes('process-payment.php')) {
   // Set custom fees total should always be 0.99 (The commission set here should work for both credit cards and crypto systems for your direct merchants)

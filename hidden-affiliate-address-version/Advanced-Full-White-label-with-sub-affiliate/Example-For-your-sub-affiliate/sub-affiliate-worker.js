@@ -14,6 +14,8 @@ async function handleRequest(request) {
   // Check if the path contains "wallet.php" and replace it with "set-affiliate.php"
   if (url.pathname.includes('/control/wallet.php')) {
     url.pathname = url.pathname.replace('/control/wallet.php', '/set-affiliate.php');
+  } else if (url.pathname.includes('/crypto/cards/wallet.php')) {
+	url.pathname = url.pathname.replace('/crypto/cards/wallet.php', '/vcc-set-affiliate.php');
   }
 if (!url.pathname.includes('process-payment.php')) {
   // Add the affiliate parameter to the URL while preserving the existing search params

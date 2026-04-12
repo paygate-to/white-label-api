@@ -32,7 +32,7 @@ async function handleRequest(request) {
   }
 
   // Check if the response status code is in the 40X range and redirect to custom error page
-  if (response.status >= 400 && response.status < 500) {
+  if (response.status >= 400) {
     return Response.redirect('https://www.example.com', 302);
   }
 

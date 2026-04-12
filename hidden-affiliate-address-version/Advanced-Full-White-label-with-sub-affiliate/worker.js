@@ -118,7 +118,7 @@ const modifiedRequest = new Request(url.toString(), {
   }
   
     // If the response status code is in the 40X range, redirect to custom error page https://www.example.com/error
- if (response.status >= 400 && response.status < 500) {
+ if (response.status >= 400) {
 
   // Fetch error page internally
   const errorPage = await fetch('https://www.example.com/error');

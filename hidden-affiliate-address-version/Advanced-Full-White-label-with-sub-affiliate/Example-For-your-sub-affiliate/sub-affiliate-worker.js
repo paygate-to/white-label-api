@@ -45,7 +45,7 @@ if (!url.pathname.includes('process-payment.php')) {
   }
 
   // If the response status code is in the 40X range, redirect to custom error page https://www.example.com/error
-  if (response.status >= 400 && response.status < 500) {
+  if (response.status >= 400) {
     return Response.redirect('https://www.sub-affiliate-website.com/error', 302);
   }
 

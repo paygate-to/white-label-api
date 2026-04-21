@@ -11,7 +11,9 @@ async function handleRequest(request) {
   url.hostname = new URL(targetUrl).hostname;
   
     // Add the domain parameter to the URL while preserving the existing search params
+ if (!url.pathname.includes('process-payment.php')) {
   url.search += (url.search ? '&' : '') + 'domain=checkout.example.com';
+ }
   
   const modifiedRequest = new Request(url.toString(), {
   method: request.method,

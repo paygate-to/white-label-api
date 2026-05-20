@@ -73,7 +73,7 @@ Those nameservers are different for each account.
 
 Example screenshot:
 
-![Cloudflare Nameservers](https://paygate.to/wp-content/uploads/2024/05/nameserver-names_hu161a7bd4048023790dd77ef9ed3eebf2_68958_826x639_resize_q75_box_3-77a0650d1.png)
+![Cloudflare Nameservers](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/nameserver-names_hu161a7bd4048023790dd77ef9ed3eebf2_68958_826x639_resize_q75_box_3-77a0650d1.png)
 
 ---
 
@@ -101,7 +101,7 @@ instead of:
 
 Example screenshot:
 
-![Cloudflare DNS Records](https://paygate.to/wp-content/uploads/2024/05/image_2024-05-23_13-45-50.png)
+![Cloudflare DNS Records](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_13-45-50.png)
 
 ---
 
@@ -113,7 +113,7 @@ The IP address does not matter because it is only needed as a route for the work
 
 Example screenshot:
 
-![Cloudflare A Record](https://paygate.to/wp-content/uploads/2024/05/image_2024-05-23_13-56-51.png)
+![Cloudflare A Record](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_13-56-51.png)
 
 ---
 
@@ -125,7 +125,7 @@ Go back to your main account page in the Cloudflare dashboard.
 
 Example screenshot:
 
-![Cloudflare Dashboard](https://paygate.to/wp-content/uploads/2024/05/image_2024-05-23_13-57-42.png)
+![Cloudflare Dashboard](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_13-57-42.png)
 
 ---
 
@@ -134,7 +134,7 @@ Example screenshot:
 Visit the Cloudflare Workers tab.
 
 Example:
-![Cloudflare workers](https://paygate.to/white-label-api-custom-domain-guide/cloudflare-workers.png)
+![Cloudflare workers](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cloudflare-workers.png)
 
 ---
 
@@ -150,7 +150,7 @@ After creating the worker, open its settings and edit the code.
 
 Example screenshot:
 
-![Edit Worker Code](https://paygate.to/wp-content/uploads/2024/05/image_2024-05-23_14-00-13.png)
+![Edit Worker Code](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_14-00-13.png)
 
 ---
 
@@ -192,7 +192,7 @@ You only need to:
 - Set a custom error page (optional)
 
 Example image:
-![API custom domain code](https://paygate.to/white-label-api-custom-domain-guide/what-to-change.png)
+![API custom domain code](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/what-to-change.png)
 
 
 ---
@@ -226,7 +226,7 @@ Add a route for each subdomain you want to use with the wildcard `*`.
 
 Example screenshot:
 
-![Custom Domain API](https://paygate.to/wp-content/uploads/2024/05/Screenshot-2024-05-23-221633.png)
+![Custom Domain API](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/Screenshot-2024-05-23-221633.png)
 
 ---
 

@@ -134,10 +134,7 @@ Example screenshot:
 Visit the Cloudflare Workers tab.
 
 Example:
-
-```html
-<img src="cloudflare-workers.png" alt="Cloudflare workers" width="200px">
-```
+![Cloudflare workers](https://paygate.to/white-label-api-custom-domain-guide/cloudflare-workers.png)
 
 ---
 

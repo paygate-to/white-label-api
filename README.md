@@ -195,12 +195,8 @@ You only need to:
 - Set a custom error page (optional)
 
 Example image:
+![API custom domain code](https://paygate.to/white-label-api-custom-domain-guide/what-to-change.png)
 
-```html
-<a href="what-to-change.png">
-  <img src="what-to-change.png" width="50%" alt="API custom domain code">
-</a>
-```
 
 ---
 

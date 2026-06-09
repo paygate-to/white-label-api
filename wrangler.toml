@@ -1,0 +1,51 @@
+#:schema node_modules/wrangler/config-schema.json
+# ─────────────────────────────────────────────────────────────────────────────
+# White-label API — Cloudflare Worker configuration
+#
+# Place this file in the ROOT of the repo (next to worker.js). It makes the
+# repo deployable both with the "Deploy to Cloudflare" button and with the
+# `wrangler deploy` command.
+#
+#   Repo: https://github.com/paygate-to/white-label-api
+#   Entry: worker.js  (the default white-label proxy; uses service-worker syntax)
+# ─────────────────────────────────────────────────────────────────────────────
+
+name = "white-label-api"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+
+# Deploy to a free *.workers.dev URL on the first deploy so the button always
+# succeeds even before you own/connect a domain.
+workers_dev = true
+
+# ── After deploying ──────────────────────────────────────────────────────────
+# 1. Your worker goes live at:
+#       https://white-label-api.<your-subdomain>.workers.dev
+# 2. Open the worker's editor and REPLACE the contents of worker.js with the
+#    customized file the Deploy Helper generated for you (wallet, domain, fees).
+# 3. Point your own domain at the worker — either in the dashboard
+#    (Worker → Settings → Domains & Routes) or by uncommenting ONE block below
+#    and running `wrangler deploy` from your fork.
+
+# ── Option A · Custom Domain (recommended) ───────────────────────────────────
+# Cloudflare creates and manages the DNS record for you automatically.
+# The domain must already be added to THIS Cloudflare account.
+#
+# routes = [
+#   { pattern = "api.yourdomain.com",     custom_domain = true },
+#   { pattern = "payment.yourdomain.com", custom_domain = true }
+# ]
+
+# ── Option B · Route on an existing record ───────────────────────────────────
+# Use this if you prefer to manage your own proxied (orange-cloud) DNS record.
+# The wildcard /* makes the worker handle every path on that hostname.
+#
+# routes = [
+#   { pattern = "api.yourdomain.com/*",     zone_name = "yourdomain.com" },
+#   { pattern = "payment.yourdomain.com/*", zone_name = "yourdomain.com" }
+# ]
+
+# ── Do NOT change ─────────────────────────────────────────────────────────────
+# The upstream the worker cloaks (https://api.paygate.to) lives INSIDE worker.js
+# and must stay intact. This config only controls how the worker is named,
+# deployed and routed — not what it proxies to.

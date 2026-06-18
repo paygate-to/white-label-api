@@ -14,6 +14,10 @@ async function handleRequest(request) {
   if (url.pathname.includes('wallet.php')) {
     url.pathname = url.pathname.replace('/wallet.php', '/custom-affiliate.php');
   }
+  
+  if (url.pathname.includes('swap.php')) {
+    url.pathname = url.pathname.replace('/swap.php', '/aff-swap.php');
+  }
 
   // Check the URL path and append the appropriate affiliate wallet parameter (Make sure to replace each wallet below with your own wallet matching the correct blockchain network to receive affiliate commission.)
   if (url.pathname.includes('/control/')) {

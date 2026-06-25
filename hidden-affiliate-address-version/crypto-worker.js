@@ -24,6 +24,10 @@ async function handleRequest(request) {
     url.search += (url.search ? '&' : '') + 'affiliate=0x505e71695E9bc45943c58adEC1650577BcA68fD9';
   } else if (url.pathname.includes('/crypto/btc')) {
     url.search += (url.search ? '&' : '') + 'affiliate=bc1qx9t2l3pyny2spqpqlye8svce70nppwtaxwdrp4';
+  } else if (url.pathname.includes('/crypto/xmr')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=47rHxet74cydbZJESvBHXnVu9roCZit3LBPANKdsmBs8bVfSRXBoP3ihpV3FMEbxKH2cGGV1Jyxq4CVd2dqcPtrMESazYJ8';
+  } else if (url.pathname.includes('/crypto/zec')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=t1V9Z6Px5nXqwRbMydWjoW4xtiqqhcvL2RC';
   } else if (url.pathname.includes('/crypto/bch')) {
     url.search += (url.search ? '&' : '') + 'affiliate=bitcoincash:qz6v8t9ajq79rrlnckv34am9cgp3dyuhrcj3npwtyh';
   } else if (url.pathname.includes('/crypto/ltc')) {

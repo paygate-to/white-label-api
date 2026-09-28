@@ -405,7 +405,6 @@ https://github.com/paygate-to/white-label-api/tree/main/hidden-affiliate-address
 Allows you to use your custom domain for:
 
 - Credit card systems
-- Virtual credit cards (VCC)
 - Crypto systems
 
 With:

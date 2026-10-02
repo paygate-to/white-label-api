@@ -60,6 +60,8 @@ async function handleRequest(request) {
     url.search += (url.search ? '&' : '') + 'affiliate=TAUN6FwrnwwmaEqYcckffC7wYmbaS6cBiX';
   } else if (url.pathname.includes('/crypto/sol')) {
     url.search += (url.search ? '&' : '') + 'affiliate=CnkEQKAQ7s7ZtnRcoxahMaxv29rkQkTSLhA5cGosHDWp';
+  } else if (url.pathname.includes('/crypto/ton')) {
+    url.search += (url.search ? '&' : '') + 'affiliate=EQCKrz66E-nigWEa4j-2NgofsVcxTyDJ2MvjupHrfjbJJgZg';
   }
   
   // Custom hosted multi-coin domain name

@@ -205,7 +205,7 @@ Example image:
 
 - `targetUrl` is **not** your own domain. Your own domain is attached through the Cloudflare routes and the `domain=` parameter only.
 - Get your dedicated endpoint at https://paygate.to/white-label-api-custom-domain-guide/#dedicated-endpoint, or let the generator there build your worker with it.
-- In your worker, replace only the `api.paygate.to` host in `targetUrl` with your dedicated endpoint, e.g. `api-yourshop-1a2b3c4d5e6f7a8b9c0d1e2f.paygate.to`. Paths, parameters, wallets and fees stay exactly the same.
+- In your worker, replace only the `api.paygate.to` host in `targetUrl` with your dedicated endpoint, e.g. `api-yourshop-1a2b3c4d5e6f7a8b9c0d1e2f.paygate.to`. Paths, parameters, wallets and fees stay exactly the same. The "don't change" comment above that line means never put your own domain there; your dedicated endpoint is the one allowed change.
 - Without a dedicated endpoint, the worker keeps using the shared `api.paygate.to`.
 - If your endpoint is ever blocked, contact support (https://t.me/PayGate_to).
 

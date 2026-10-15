@@ -1,12 +1,12 @@
 # whitelabel-api
 White-label (rebrand API) https://api.paygate.to with your own custom domain using Cloudflare workers.
 
-* Create a new Cloudflare worker
+* Create a new Cloudflare worker (Compute → Workers & Pages → Create application → Start with Hello World!)
 * Edit the code and replace with the desired worker.js (You can use the hidden affiliate wallet version to hide your wallet affiliate parameter from your sub merchants by inserting it directly in the Cloudflare JS code).
 * Replace the example wallet (0x505e71695E9bc45943c58adEC1650577BcA68fD9) with your own affiliate wallet.
 * Replace checkout.example.com with your own custom domain to be displayed in the hosted Multi-provider Mode.
 * Leave all instances of api.paygate.to intact, don't replace it with your own domain name.
-* Route your custom domain to the newly created Cloudflare worker from your Cloudflare dashboard.
+* Connect your custom domain to the newly created Cloudflare worker (worker → Domains tab → Add Domain). Cloudflare creates the DNS record for you, so no DNS records or routes are needed.
 
 # Guides
 * For more information visit: https://paygate.to/affiliate-white-label/
@@ -39,7 +39,7 @@ You need to complete 4 steps:
 
 1. Your domain name must be using Cloudflare DNS service (free account plan will work fine).
 2. Create a free Cloudflare Worker with the provided JS code to use the API.
-3. Route your domain to use the Cloudflare Worker.
+3. Connect your domain to the Cloudflare Worker with one click (**Add Domain**). No DNS records or routes needed.
 4. Optionally insert your affiliate wallet within the code and redistribute plugins to earn percentage on your sub-merchant sales.
 
 Affiliate program:
@@ -59,7 +59,9 @@ https://cloudflare.com/
 
 ## 2. Add Your Domain to Cloudflare
 
-Add your domain name to use the free Cloudflare DNS service.
+Add your domain name to use the free Cloudflare DNS service (**Domains → Add domain → Connect a domain**).
+
+![Cloudflare Connect your domain](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-0-connect-domain.jpg)
 
 After adding your domain you will be instructed to change your domain nameservers (NS records).
 
@@ -81,82 +83,51 @@ Example screenshot:
 
 After completing the previous steps your domain should be actively using Cloudflare.
 
----
-
-## 5. Create Proxied DNS Records
-
-Make a proxy (Orange Cloud) DNS `A` record for every subdomain you want to use with the API.
-
-You can add `8.8.8.8` or any other IP address as this record will be proxied to the API anyway.
-
-In the following example we will use:
-
-- `api.iptvpay.com`
-- `payment.iptvpay.com`
-
-instead of:
-
-- `api.paygate.to`
-- `checkout.paygate.to`
-
-Example screenshot:
-
-![Cloudflare DNS Records](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_13-45-50.png)
-
----
-
-## 6. Add Additional Proxied Records
-
-You may need to add a proxied record for every domain/subdomain you want to use as a custom domain for the API.
-
-The IP address does not matter because it is only needed as a route for the worker in the next steps.
-
-Example screenshot:
-
-![Cloudflare A Record](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_13-56-51.png)
+You don't need to add any DNS records for the API: Cloudflare creates them when you connect the domain to your worker (see below).
 
 ---
 
 # Create a Cloudflare Worker
 
-## 1. Open the Cloudflare Dashboard
+## 1. Open Workers & Pages
 
-Go back to your main account page in the Cloudflare dashboard.
+In the Cloudflare dashboard sidebar open **Compute → Workers & Pages**.
 
-Example screenshot:
-
-![Cloudflare Dashboard](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_13-57-42.png)
+![Cloudflare Compute, Workers & Pages](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-1-compute-workers.jpg)
 
 ---
 
-## 2. Open the Workers Tab
+## 2. Create an Application
 
-Visit the Cloudflare Workers tab.
+Press the **Create application** button.
 
-Example:
-![Cloudflare workers](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cloudflare-workers.png)
+![Cloudflare Create application](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-2-create-application.jpg)
 
 ---
 
-## 3. Create a New Worker
+## 3. Start with Hello World!
 
-Create a new worker after pressing the **Create Application** button.
+Choose **Start with Hello World!** This creates an empty worker you will replace with the provided code.
+
+![Cloudflare Start with Hello World](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-3-hello-world.jpg)
+
+Name the worker (for example `paygate-api`) and press **Deploy**.
+
+![Name and deploy the Cloudflare worker](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-4-name-deploy.jpg)
 
 ---
 
 ## 4. Edit the Worker Code
 
-After creating the worker, open its settings and edit the code.
+On the new worker's page press **Edit code**.
 
-Example screenshot:
-
-![Edit Worker Code](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/image_2024-05-23_14-00-13.png)
+![Edit Worker Code](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-5-edit-code.jpg)
 
 ---
 
 ## 5. Insert the Worker Code
 
-You will need to insert the provided `worker.js` code into your worker.
+Select all the Hello World code in the editor, delete it and paste the provided `worker.js` code instead.
 
 Two versions are available:
 
@@ -203,7 +174,7 @@ Example image:
 > PayGate.to is a high-demand service. Every merchant can get a free DDoS-protected endpoint of their
 > own that keeps working when the shared `api.paygate.to` is under attack.
 
-- `targetUrl` is **not** your own domain. Your own domain is attached through the Cloudflare routes and the `domain=` parameter only.
+- `targetUrl` is **not** your own domain. Your own domain is connected in the worker's **Domains** tab and passed with the `domain=` parameter only.
 - Get your dedicated endpoint at https://paygate.to/white-label-api-custom-domain-guide/#dedicated-endpoint, or let the generator there build your worker with it.
 - In your worker, replace only the `api.paygate.to` host in `targetUrl` with your dedicated endpoint, e.g. `api-yourshop-1a2b3c4d5e6f7a8b9c0d1e2f.paygate.to`. Paths, parameters, wallets and fees stay exactly the same. The "don't change" comment above that line means never put your own domain there; your dedicated endpoint is the one allowed change.
 - Without a dedicated endpoint, the worker keeps using the shared `api.paygate.to`.
@@ -213,7 +184,9 @@ Example image:
 
 ## 6. Deploy the Worker
 
-Deploy the code to your Cloudflare Worker.
+Press **Deploy** in the editor to publish the code.
+
+![Paste the code and deploy the Cloudflare worker](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-6-paste-deploy.jpg)
 
 The free Cloudflare plan allows:
 
@@ -223,43 +196,33 @@ with your own custom domain free of charge.
 
 ---
 
-# Route Your Custom Domain to the Created Worker
+# Connect Your Custom Domain to the Worker
 
-## 1. Configure Worker Routes
+## 1. Open the Domains Tab
 
-From the newly created worker settings you can:
+Open the worker's **Domains** tab and press **Add Domain**.
 
-- Set a global custom domain
-- Set custom routes with multiple domains
-
----
-
-## 2. Add Routes
-
-Add a route for each subdomain you want to use with the wildcard `*`.
-
-Example screenshot:
-
-![Custom Domain API](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/wp-content/uploads/2024/05/Screenshot-2024-05-23-221633.png)
+![Cloudflare worker Domains tab, Add Domain](https://raw.githubusercontent.com/paygate-to/site-mirror/refs/heads/main/white-label-api-custom-domain-guide/cf-7-domains-tab.jpg)
 
 ---
 
-## 3. Example Routes
+## 2. Add Your API Address
 
-Example routes:
+Choose your domain and enter the subdomain you want to use instead of `api.paygate.to`, for example `api.example.com`.
 
-```txt
-api.iptvpay.com/*
-payment.iptvpay.com/*
-```
+Cloudflare creates the DNS record and the SSL certificate automatically, so there are no DNS records or routes to set up. If that subdomain already has a DNS record, delete it first.
 
-The `*` wildcard means the domain will work globally for any API path.
+---
+
+## 3. Add Your Payment Page Address
+
+Press **Add Domain** again for your payment page address, for example `payment.example.com` instead of `checkout.paygate.to`. Your customers see this address on the hosted card and multi-coin crypto payment pages.
 
 ---
 
 ## 4. Final Result
 
-After completing all previous steps your domain should work exactly the same way as:
+After a minute or two your domain works exactly the same way as:
 
 ```txt
 api.paygate.to
